@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './index';
-import { shallow } from 'enzyme';
+import App from '../../App';
+import { shallow, mount } from 'enzyme';
 import { findByTestAtrr, checkProps } from '../../Utils';
 
 const setUp = (props = {}) => {

@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const index = ({ buttonText }) => {
+const index = ({ buttonText, increaseCounter, decreaseCounter }) => {
     return (
         <div data-test='ButtonComponent'>
-            <button data-test='button'>{buttonText}</button>
+            {buttonText === 'Increment' ? (
+                <button data-test='button' onClick={increaseCounter}>
+                    {buttonText}
+                </button>
+            ) : (
+                <button data-test='button' onClick={decreaseCounter}>
+                    {buttonText}
+                </button>
+            )}
         </div>
     );
 };
