@@ -18,4 +18,24 @@ describe('Header Component', () => {
             expect(propsErr).toBeUndefined();
         });
     });
+
+    describe('Have Props', () => {
+        let wrapper;
+        beforeEach(() => {
+            const props = {
+                head: 'Test Head',
+            };
+            wrapper = setUp(props);
+        });
+
+        it('Should render without errors', () => {
+            const component = findByTestAtrr(wrapper, 'HeadComponent');
+            expect(component.length).toBe(1);
+        });
+
+        it('Should render an h1', () => {
+            const h1 = findByTestAtrr(wrapper, 'Heading');
+            expect(h1.length).toBe(1);
+        });
+    });
 });
