@@ -3,10 +3,11 @@ import './App.css';
 import Header from './components/Header';
 import Button from './components/Button';
 import Counter from './components/Counter';
+import Post from './components/Post';
 import { connect } from 'react-redux';
 import { fetchPosts } from './actions';
 
-function App({ fetchPosts }) {
+function App({ fetchPosts, posts }) {
     useEffect(() => {
         fetchPosts();
     }, [fetchPosts]);
@@ -22,6 +23,14 @@ function App({ fetchPosts }) {
             <Counter count={counter} />
             <Button buttonText='Increment' increaseCounter={incCount} />
             <Button buttonText='Decrement' decreaseCounter={decCount} />
+            {posts.map((post, index) => {
+                const { title, body } = post;
+                const configListItem = {
+                    title,
+                    desc: body,
+                };
+                return <Post key={index} {...configListItem} />;
+            })}
         </div>
     );
 }
