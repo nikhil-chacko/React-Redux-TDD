@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Button from './components/Button';
 import Counter from './components/Counter';
+import { connect } from 'react-redux';
+import { fetchPosts } from './actions';
 
-function App() {
+function App({ fetchPosts }) {
+    useEffect(() => {
+        fetchPosts();
+    }, [fetchPosts]);
+
     const [counter, setCounter] = useState(0);
 
     const incCount = () => setCounter(counter + 1);
@@ -20,4 +26,4 @@ function App() {
     );
 }
 
-export default App;
+export default connect(null, { fetchPosts })(App);
