@@ -1,21 +1,39 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import App from './App';
-import { findByTestAtrr } from './Utils';
+import { shallow } from 'enzyme';
+import { findByTestAtrr, testStore } from './Utils';
+import React from 'react';
 
-const setUp = () => {
-    const wrapper = shallow(<App />);
+const setUp = (initialState = {}) => {
+    const store = testStore(initialState);
+    const wrapper = shallow(<App store={store} />)
+        .childAt(0)
+        .dive();
     return wrapper;
 };
 
-describe('App component', () => {
+describe('App Component', () => {
     let wrapper;
-
     beforeEach(() => {
-        wrapper = setUp();
+        const initialState = {
+            posts: [
+                {
+                    title: 'Example title 1',
+                    body: 'Some text',
+                },
+                {
+                    title: 'Example title 2',
+                    body: 'Some text',
+                },
+                {
+                    title: 'Example title 3',
+                    body: 'Some text',
+                },
+            ],
+        };
+        wrapper = setUp(initialState);
     });
 
-    it('Tests app Component', () => {
+    it('Should render without errors', () => {
         const component = findByTestAtrr(wrapper, 'appComponent');
         expect(component.length).toBe(1);
     });
