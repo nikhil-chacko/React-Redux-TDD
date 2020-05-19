@@ -5,11 +5,12 @@ import Button from './components/Button';
 import Counter from './components/Counter';
 import Post from './components/Post';
 import { connect } from 'react-redux';
-import { fetchPosts } from './actions';
+import { fetchPosts, fetchPost } from './actions';
 
-function App({ fetchPosts, posts }) {
+function App({ fetchPosts, posts, fetchPost }) {
     useEffect(() => {
         fetchPosts();
+        fetchPost(1);
     }, [fetchPosts]);
 
     const [counter, setCounter] = useState(0);
@@ -41,4 +42,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { fetchPosts })(App);
+export default connect(mapStateToProps, { fetchPosts, fetchPost })(App);

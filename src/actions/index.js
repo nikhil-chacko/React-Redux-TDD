@@ -15,3 +15,18 @@ export const fetchPosts = () => async (dispatch) => {
             // console.log(err);
         });
 };
+
+export const fetchPost = (id) => async (dispatch) => {
+    await axios
+        .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+        .then((res) => {
+            console.log(res);
+            dispatch({
+                type: types.GET_POST,
+                payload: res.data,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};

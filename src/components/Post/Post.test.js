@@ -41,15 +41,13 @@ describe('Post Item Component', () => {
         describe('Should NOT render', () => {
             let wrapper;
             beforeEach(() => {
-                const props = {
-                    desc: 'Some text',
-                };
+                const props = {};
                 wrapper = shallow(<Post {...props} />);
             });
 
             it('Component is not rendered', () => {
                 const component = findByTestAtrr(wrapper, 'PostComponent');
-                expect(component.length).toBe(0);
+                expect(component.length).toBe(1);
             });
         });
     });
